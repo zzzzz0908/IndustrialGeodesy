@@ -6,7 +6,7 @@ namespace IndustrialGeodesy.Math
 {
     public static class Extensions
     {
-        public static Point3D Centroid(this List<Point3D> points)
+        public static Point3D Centroid(this IList<Point3D> points)
         {
             int n = points.Count;
 
