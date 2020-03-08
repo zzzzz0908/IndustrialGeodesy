@@ -2,11 +2,11 @@
 
 namespace IndustrialGeodesy.Math
 {
-	public struct Point3D
+	public readonly struct Point3D
 	{
-		public double N { get; private set; }
-		public double E { get; private set; }
-		public double H { get; private set; }
+		public double N { get; }
+		public double E { get; }
+		public double H { get; }
 
 		public Point3D(double northing, double easting, double height)
 		{
