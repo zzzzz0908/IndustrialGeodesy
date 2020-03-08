@@ -1,5 +1,7 @@
 ﻿
 
+using MathNet.Numerics.LinearAlgebra;
+
 namespace IndustrialGeodesy.Math
 {
 	public readonly struct Point3D
@@ -30,6 +32,11 @@ namespace IndustrialGeodesy.Math
 		public double[] ToArray()
 		{
 			return new double[] { this.N, this.E, this.H };
+		}
+
+		public Vector<double> ToVector()
+		{
+			return Vector<double>.Build.DenseOfArray(this.ToArray());
 		}
 	}
 }
