@@ -43,6 +43,16 @@ namespace IndustrialGeodesy.ConsoleView
             Plane plane = new Plane(1, 1, 1, -3);
 
             Plane plane2 = new Plane(Vector<double>.Build.DenseOfArray(new double[] { 1, 1, 1 }), new Point3D(1, 1, 1));
+
+            Point3D[] testPoints = new Point3D[]
+            {
+                new Point3D(3,0,0),
+                new Point3D(0,3,0),
+                new Point3D(0,0,3)
+            };
+
+            Plane plane3 = Plane.CreateFromPoints(testPoints[0], testPoints[1], testPoints[2]);
+        
         }
     }
 }
