@@ -26,8 +26,14 @@ namespace IndustrialGeodesy.Math
                 throw new ArgumentException("Размерность вектора нормали на равна 3", nameof(normal));
             }
 
-            UnitNormalVector = normal.Normalize(1);
+            UnitNormalVector = normal.Normalize(2);
             D = -UnitNormalVector * rootPoint.ToVector();
+        }
+
+        public Plane(double A, double B, double C, double D)
+        {
+            UnitNormalVector = Vector<double>.Build.DenseOfArray(new double[] { A, B, C }).Normalize(2);
+            this.D = D / System.Math.Sqrt(A * A + B * B + C * C);
         }
     }
 }

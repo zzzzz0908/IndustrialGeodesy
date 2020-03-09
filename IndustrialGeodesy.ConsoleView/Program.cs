@@ -23,7 +23,7 @@ namespace IndustrialGeodesy.ConsoleView
                 points.Add(new Point3D(coords[0], coords[1], coords[2]));
             }
 
-            var center = points.Centroid();
+            Point3D center = points.Centroid();
 
             //points.ForEach(i => i -= center);
 
@@ -39,6 +39,10 @@ namespace IndustrialGeodesy.ConsoleView
             var svd = X.Svd();
 
             Console.WriteLine(svd.VT.Row(2));
+
+            Plane plane = new Plane(1, 1, 1, -3);
+
+            Plane plane2 = new Plane(Vector<double>.Build.DenseOfArray(new double[] { 1, 1, 1 }), new Point3D(1, 1, 1));
         }
     }
 }
