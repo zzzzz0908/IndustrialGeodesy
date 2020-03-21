@@ -30,28 +30,33 @@ namespace IndustrialGeodesy.ConsoleView
             int n = points.Count;
             Matrix<double> X = Matrix<double>.Build.Dense(n, 3);
 
+            Point3D[] points2 = new Point3D[points.Count];
+
             for (int i = 0; i < n; i++)
             {
-                points[i] -= center;
-                X.SetRow(i, points[i].ToArray());
+                //points[i] -= center;
+                points2[i] = points[i] - center;
+                X.SetRow(i, points2[i].ToArray());
             }
 
             var svd = X.Svd();
 
             Console.WriteLine(svd.VT.Row(2));
 
-            Plane plane = new Plane(1, 1, 1, -3);
+            Console.WriteLine(svd.U.ToString());
+            Console.WriteLine(svd.S.ToString());
+            Console.WriteLine(svd.VT.ToString());
 
-            Plane plane2 = new Plane(Vector<double>.Build.DenseOfArray(new double[] { 1, 1, 1 }), new Point3D(1, 1, 1));
+            //Plane plane = new Plane(1, 1, 1, -3);
 
-            Point3D[] testPoints = new Point3D[]
+            //Plane plane2 = new Plane(Vector<double>.Build.DenseOfArray(new double[] { 1, 1, 1 }), new Point3D(1, 1, 1));
+
+            Plane plane = new Plane(svd.VT.Row(2), center);
+
+            foreach (Point3D point in points)
             {
-                new Point3D(3,0,0),
-                new Point3D(0,3,0),
-                new Point3D(0,0,3)
-            };
-
-            Plane plane3 = Plane.CreateFromPoints(testPoints[0], testPoints[1], testPoints[2]);
+                Console.WriteLine(plane.DistanceTo(point).ToString("0.00"));
+            }
         
         }
     }

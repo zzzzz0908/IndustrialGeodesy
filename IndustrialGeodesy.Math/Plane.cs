@@ -36,6 +36,16 @@ namespace IndustrialGeodesy.Math
             this.D = D / System.Math.Sqrt(A * A + B * B + C * C);
         }
 
+
+
+
+        public double DistanceTo(Point3D point)
+        {
+            return UnitNormalVector * point.ToVector() + D;
+        }
+
+
+
         public static Plane CreateFromPoints(Point3D p1, Point3D p2, Point3D p3)
         {
             double A = (p2.E - p1.E) * (p3.H - p1.H) - (p2.E - p1.E) * (p2.H - p1.H);
